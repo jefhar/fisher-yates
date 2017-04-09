@@ -1,0 +1,13 @@
+{
+    "name": "lifemeetscode/fisher-yates",
+    "description": "A PHP implementation of the Fisher-Yates shuffle",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Adam Kammeyer",
+            "email": "adamkammeyer@gmail.com"
+        }
+    ],
+    "require": {}
+}
