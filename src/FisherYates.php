@@ -14,13 +14,18 @@ class FisherYates
     private $itemsToShuffle;
     private $shuffledItems;
 
-    public function __construct(array $itemsToRandomize)
+    public function __construct(array $itemsToShuffle = [])
     {
-        $this->itemsToShuffle = $itemsToRandomize;
+        $this->itemsToShuffle = $itemsToShuffle;
         $this->shuffledItems = [];
     }
 
-    public function getShuffledItems()
+    public function setItemsToShuffle(array $itemsToShuffle)
+    {
+        $this->itemsToShuffle = $itemsToShuffle;
+    }
+
+    public function shuffle()
     {
         while (count($this->itemsToShuffle) > 0) {
             $randomNumber = $this->getRandomInteger(0, count($this->itemsToShuffle)-1);
