@@ -10,7 +10,7 @@ class FisherYatesTest extends TestCase {
         $itemsToShuffle = ['a', 'b', 'c', 'd', 'e'];
         $fy = new FisherYates($itemsToShuffle);
 
-        $shuffled = $fy->getShuffledItems();
+        $shuffled = $fy->shuffle();
 
         $this->assertEquals($itemsToShuffle, $shuffled, "\$canonicalize = true", $delta = 0.0, $maxDepth = 10, $canonicalize = true);
     }
