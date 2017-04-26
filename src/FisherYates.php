@@ -16,13 +16,13 @@ class FisherYates
 
     public function __construct(array $itemsToShuffle = [])
     {
-        $this->itemsToShuffle = $itemsToShuffle;
-        $this->shuffledItems = [];
+        $this->setItemsToShuffle($itemsToShuffle);
     }
 
     public function setItemsToShuffle(array $itemsToShuffle)
     {
         $this->itemsToShuffle = $itemsToShuffle;
+        $this->shuffledItems = [];
     }
 
     public function shuffle()
