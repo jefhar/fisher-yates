@@ -1,0 +1,25 @@
+dist: trusty
+language: php
+
+php:
+  - 5.6
+  - 7.0
+  - 7.1
+  - 7.2
+
+sudo: false
+
+cache:
+  directories:
+    - $HOME/.composer/cache
+
+matrix:
+  include:
+    - php: 5.6
+      env: 'COMPOSER_FLAGS="--prefer-stable --prefer-lowest"'
+
+before_script:
+  - travis retry compser update ${COMPOSER_FLAGS} --no-interaction --prefer-dist
+
+script:
+  - vendor/bin/phpunit tests/FisherYatesTest.php
