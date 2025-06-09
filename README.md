@@ -15,7 +15,7 @@ composer require jefhar/fisher-yates
 ## Usage
 
 ```php
-use Lmc\FisherYates;
+use Lmc\FisherYates\FisherYates;
 
 $itemsToShuffle = ['a', 'b', 'c', 'd', 'e'];
 
@@ -26,7 +26,7 @@ $result = $fy->shuffle();
 
 If you need a deterministic shuffle, you can send a seed to the `shuffle` method:
 ```php
-use Lmc\FisherYates;
+use Lmc\FisherYates\FisherYates;
 
 $seed = 123_456_789;
 $itemsToShuffle = ['a', 'b', 'c', 'd', 'e'];
