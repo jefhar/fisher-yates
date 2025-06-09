@@ -5,14 +5,24 @@ use PHPUnit\Framework\TestCase;
 
 class FisherYatesTest extends TestCase {
 
-    public function testShuffledItemsContainSameAsOriginal()
+    public function testShuffledItemsContainSameAsOriginal(): void
     {
         $itemsToShuffle = ['a', 'b', 'c', 'd', 'e'];
         $fy = new FisherYates($itemsToShuffle);
 
         $shuffled = $fy->shuffle();
 
-        $this->assertEquals($itemsToShuffle, $shuffled, "\$canonicalize = true", $delta = 0.0, $maxDepth = 10, $canonicalize = true);
+        $this->assertEqualsCanonicalizing($itemsToShuffle, $shuffled);
     }
 
+    public function testShuffledWithSeedIsDeterministic():void
+    {
+        $seed = 123_456_789;
+        $itemsToShuffle = ['a', 'b', 'c', 'd', 'e'];
+        $fy = new FisherYates($itemsToShuffle);
+
+        $shuffled = $fy->shuffle($seed);
+
+        $this->assertEquals(['d', 'a', 'b', 'e', 'c'], $shuffled);
+    }
 }

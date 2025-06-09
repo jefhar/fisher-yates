@@ -1,40 +1,60 @@
 <?php
+
+declare(strict_types=1);
+
 namespace Lmc\FisherYates;
 
 class FisherYates
 {
-    private $itemsToShuffle;
-    private $shuffledItems;
+    private array $itemsToShuffle;
+    private array $shuffledItems;
 
     public function __construct(array $itemsToShuffle = [])
     {
         $this->setItemsToShuffle($itemsToShuffle);
     }
 
-    public function setItemsToShuffle(array $itemsToShuffle)
+    private function setItemsToShuffle(array $itemsToShuffle): void
     {
         $this->itemsToShuffle = $itemsToShuffle;
-        $this->shuffledItems = [];
     }
 
-    public function shuffle()
+    /**
+     * This function does not generate cryptographically secure values, and
+     * must not be used for cryptographic purposes, or purposes that require
+     * returned values to be unguessable.
+     */
+    public function shuffle(?int $seed = null): array
     {
+        if ($seed) {
+            mt_srand($seed);
+        }
+
+        $this->shuffledItems = [];
+
         while (count($this->itemsToShuffle) > 0) {
-            $randomNumber = $this->getRandomInteger(0, count($this->itemsToShuffle)-1);
+            $randomNumber = $this->getRandomInteger(0, count($this->itemsToShuffle) - 1);
             $extractedItem = array_splice($this->itemsToShuffle, $randomNumber, 1);
             $this->populateShuffledItems($extractedItem[0]);
+        }
+
+        if ($seed) {
+            // Make the next random number after this seed less-deterministic:
+            mt_srand((int)(microtime(true) * 100000) & 0xFFFFFFFF);
+            mt_srand();
         }
 
         return $this->shuffledItems;
     }
 
-    private function populateShuffledItems($item)
+    private function populateShuffledItems(mixed $item): void
     {
         $this->shuffledItems[] = $item;
     }
 
-    private function getRandomInteger($start, $end)
+    private function getRandomInteger(int $start, int $end): int
     {
-        return random_int($start, $end);
+        /** @noinspection RandomApiMigrationInspection */
+        return mt_rand($start, $end);
     }
 }
