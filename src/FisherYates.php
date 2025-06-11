@@ -26,7 +26,7 @@ class FisherYates
      */
     public function shuffle(?int $seed = null): array
     {
-        if ($seed) {
+        if ($seed !== null) {
             mt_srand($seed);
         }
 
@@ -38,7 +38,7 @@ class FisherYates
             $this->populateShuffledItems($extractedItem[0]);
         }
 
-        if ($seed) {
+        if ($seed !== null) {
             // Make the next random number after this seed less-deterministic:
             mt_srand((int)(microtime(true) * 100000) & 0xFFFFFFFF);
             mt_srand();
