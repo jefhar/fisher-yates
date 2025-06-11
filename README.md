@@ -1,6 +1,6 @@
 # fisher-yates
 
-A PHP implementation of the [Fisher-Yates shuffle](https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle)
+A PHP implementation of the [Fisher-Yates shuffle](https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle) with a deterministic shuffle.
 
 ## Installing
 
